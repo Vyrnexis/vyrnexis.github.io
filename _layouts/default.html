@@ -93,7 +93,7 @@
       color:var(--muted);
       font-size:13px;
       cursor:pointer;
-      text-decoration:none;      /* so <a> looks like button */
+      text-decoration:none;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -103,6 +103,10 @@
       background:linear-gradient(90deg,rgba(0,230,255,0.08),rgba(138,92,255,0.06));
       border:1px solid rgba(0,230,255,0.12);
       color:var(--text);
+    }
+
+    .back-link{
+      margin-bottom:10px;
     }
 
     main{
@@ -243,9 +247,12 @@
       </div>
 
       <nav>
-        <!-- These now always work: they jump to #about and #posts -->
+        <!-- About section exists on every page in the sidebar -->
         <a class="btn" href="#about">About</a>
-        <a class="btn" href="#posts">Posts</a>
+
+        <!-- Posts always goes back to the homepage list -->
+        <a class="btn" href="{{ '/' | relative_url }}#posts">Posts</a>
+
         <button class="btn primary" type="button" onclick="toggleAccent()">Toggle Accent</button>
       </nav>
     </header>
@@ -253,13 +260,31 @@
     <div class="accent-line"></div>
 
     <main>
-      <!-- POSTS section: exists on all pages, so #posts anchor is valid -->
+      <!-- POSTS section -->
       <section id="posts">
-        {{ content }}
+        {% if page.collection == "posts" %}
+          <!-- Single post view -->
+          <article class="post">
+            <a class="btn back-link" href="{{ '/' | relative_url }}#posts">← Back to posts</a>
+
+            <h1>{{ page.title }}</h1>
+            <div class="meta">
+              {{ page.date | date: "%b %-d, %Y" }}
+              {% if page.author %} • by {{ page.author }}{% endif %}
+            </div>
+
+            <div class="post-content">
+              {{ content }}
+            </div>
+          </article>
+        {% else %}
+          <!-- Homepage (index.html) or other pages: render content directly -->
+          {{ content }}
+        {% endif %}
       </section>
 
       <aside>
-        <!-- ABOUT section: exists on all pages, so #about anchor is valid -->
+        <!-- ABOUT section -->
         <div class="card" style="text-align:center;padding-bottom:18px" id="about">
           <div class="avatar" title="Vyrnexis avatar">
             <img src="{{ '/assets/avatar-vyrnexis-400.svg' | relative_url }}" alt="Vyrnexis avatar">
