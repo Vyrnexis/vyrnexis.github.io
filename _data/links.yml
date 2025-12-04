@@ -1,0 +1,12 @@
+- label: GitHub
+  url: https://github.com/Vyrnexis
+  icon: /assets/icon-github.svg
+- label: YouTube
+  url: https://www.youtube.com/@Vyrnexis
+  icon: /assets/icon-youtube.svg
+- label: Portfolio
+  url: https://vyrnexis.dev
+  icon: /assets/icon-portfolio.svg
+- label: Email
+  url: mailto:hello@vyrnexis.dev
+  icon: /assets/icon-mail.svg

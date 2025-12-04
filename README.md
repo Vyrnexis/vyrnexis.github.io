@@ -1,97 +1,77 @@
-# Vyrnexis — Dark Tech Blog (Jekyll Version)
+# Vyrnexis — Dark Tech Blog (Jekyll)
 
-This repo is a Jekyll-powered version of the **Vyrnexis** dark tech blog.
-
-- Uses a custom layout in `_layouts/default.html`
-- Home page (`index.html`) lists posts automatically
-- Posts live in `_posts/` as Markdown files
-- Logos and avatar live in `assets/`
+Minimal dark-themed Jekyll blog with accent toggle, responsive layout, and easy customization via `_config.yml` and `_data/links.yml`.
 
 ## Structure
 
 ```text
-vyrnexis-jekyll-full/
-├── index.html
-├── _config.yml
+vyrnexis.github.io/
+├── index.html               # Home lists posts
+├── about.md                 # About page content
+├── _config.yml              # Site settings, brand text, sidebar text
+├── _data/
+│   └── links.yml            # Sidebar links + icons
 ├── _layouts/
-│   └── default.html
-├── _posts/
+│   └── default.html         # Main layout, CSS, JS
+├── _posts/                  # Blog posts (Markdown)
 │   └── 2025-12-04-welcome-to-vyrnexis.md
-└── assets/
+└── assets/                  # Logos, avatar, icons
     ├── logo-vyrnexis.svg
-    ├── logo-original-vyrnexis.svg
-    └── avatar-vyrnexis-400.svg
+    ├── avatar-vyrnexis-400.svg
+    ├── icon-github.svg
+    ├── icon-youtube.svg
+    ├── icon-portfolio.svg
+    └── icon-mail.svg
 ```
 
-## Deploy to GitHub Pages
+## Customization
 
-1. Create a repository named:
+- Brand/subtitle/sidebar text: edit `_config.yml` (`brand_name`, `brand_subtitle`, `sidebar_handle`, `sidebar_subtext`).
+- Sidebar links/icons: edit `_data/links.yml` (label, url, icon path). Add more entries as needed.
+- Accent toggle: persists via localStorage; palettes are in `_layouts/default.html`.
+- Images in posts: use standard Markdown `![Alt]({{ '/assets/your-image.png' | relative_url }})` and they’ll auto-fit the column.
 
-   ```text
-   vyrnexis.github.io
-   ```
+## Adding Posts
 
-2. Copy all files from this folder into the repository root.
-
-3. From a terminal:
-
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial Vyrnexis Jekyll site"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/vyrnexis.github.io.git
-   git push -u origin main
-   ```
-
-4. Open:
-
-   ```text
-   https://<your-username>.github.io/
-   ```
-
-## Adding New Posts
-
-1. Create a new file in `_posts/` with this naming pattern:
-
-   ```text
-   YYYY-MM-DD-your-title-here.md
-   ```
-
-2. Start it with front matter, for example:
-
+1. Create `_posts/YYYY-MM-DD-title.md`
+2. Add front matter:
    ```yaml
    ---
    layout: default
-   title: "My Second Post"
+   title: "My Post Title"
    date: 2025-12-10
-   author: "Vyrnexis"
+   author: "Your Name"
    ---
    ```
-
-3. Write the rest in **Markdown**. Example:
-
+3. Write in Markdown. Example:
    ```markdown
-   This is another post on the Vyrnexis blog.
+   This is a post.
+
+   ![Alt text]({{ '/assets/example.png' | relative_url }})
 
    - bullet 1
    - bullet 2
    ```
+4. Commit and push; the home page lists it automatically.
 
-4. Commit and push:
+## Running Locally (optional)
 
-   ```bash
-   git add _posts/2025-12-10-my-second-post.md
-   git commit -m "Add new post"
-   git push
-   ```
+You don’t need to install anything to deploy on GitHub Pages (it runs Jekyll for you). If you want to preview locally and have Jekyll installed:
 
-The home page will automatically show the new post.
+```bash
+jekyll serve
+# open http://localhost:4000
+```
 
-## Logos & Avatar
+## Deploy to GitHub Pages
 
-- `assets/logo-vyrnexis.svg` — minimal square logo for the site header.
-- `assets/logo-original-vyrnexis.svg` — alternate logo with the wordmark “VYRNEXIS”.
-- `assets/avatar-vyrnexis-400.svg` — square avatar suitable for exporting to PNG (e.g. 400×400) for social profiles.
+1. Create a repo named `<username>.github.io`.
+2. Push this project to `main`.
+3. GitHub Pages will build automatically using its built-in Jekyll.
+4. Visit `https://<username>.github.io/`.
 
-You can open these SVGs in a vector editor (Inkscape, Figma, etc.) to tweak colours or export PNGs.
+## Notes
+
+- Scroll behavior: custom JS smooth-scrolls anchors and avoids jumpy back navigation.
+- Accent theme: toggles between teal/purple and remembers your choice.
+- Assets: SVG icons live in `assets/`; replace with your own if desired.

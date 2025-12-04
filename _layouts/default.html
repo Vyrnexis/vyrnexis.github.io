@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{{ page.title | default: "Vyrnexis" }}</title>
-  <meta name="description" content="Vyrnexis" />
-  <meta name="author" content="Vyrnexis" />
+  <meta name="description" content="{{ site.title | default: 'Vyrnexis' }}" />
+  <meta name="author" content="{{ site.author | default: 'Vyrnexis' }}" />
 
   <style>
     :root{
@@ -359,8 +359,8 @@
       </div>
 
       <div class="brand">
-        <h1>VYRNEXIS</h1>
-        <p>Thoughts, code, and experiments</p>
+        <h1>{{ site.brand_name | default: site.title | default: "Vyrnexis" }}</h1>
+        <p>{{ site.brand_subtitle | default: "Powered by caffeine and semicolons" }}</p>
       </div>
 
       <nav class="nav" aria-label="Primary">
@@ -401,37 +401,22 @@
           <div class="avatar" title="Vyrnexis avatar">
             <img src="{{ '/assets/avatar-vyrnexis-400.svg' | relative_url }}" alt="Vyrnexis avatar">
           </div>
-          <h3>@Vyrnexis</h3>
-          <p>Minimal. Dark. Tech.</p>
+          <h3>{{ site.sidebar_handle | default: "@Vyrnexis" }}</h3>
+          <p>{{ site.sidebar_subtext | default: "Dark mode is a lifestyle" }}</p>
         </div>
 
         <div class="card">
           <h4>Quick links</h4>
           <div class="link-list">
-            <a class="icon-link" href="https://github.com/Vyrnexis" target="_blank" rel="noreferrer">
-              <span class="icon" aria-hidden="true">
-                <img src="{{ '/assets/icon-github.svg' | relative_url }}" alt="">
-              </span>
-              <span>GitHub</span>
-            </a>
-            <a class="icon-link" href="https://www.youtube.com/@Vyrnexis" target="_blank" rel="noreferrer">
-              <span class="icon" aria-hidden="true">
-                <img src="{{ '/assets/icon-youtube.svg' | relative_url }}" alt="">
-              </span>
-              <span>YouTube</span>
-            </a>
-            <a class="icon-link" href="https://vyrnexis.dev" target="_blank" rel="noreferrer">
-              <span class="icon" aria-hidden="true">
-                <img src="{{ '/assets/icon-portfolio.svg' | relative_url }}" alt="">
-              </span>
-              <span>Portfolio</span>
-            </a>
-            <a class="icon-link" href="mailto:hello@vyrnexis.dev">
-              <span class="icon" aria-hidden="true">
-                <img src="{{ '/assets/icon-mail.svg' | relative_url }}" alt="">
-              </span>
-              <span>Email</span>
-            </a>
+            {% assign links = site.data.links %}
+            {% for link in links %}
+              <a class="icon-link" href="{{ link.url }}" {% if link.url contains 'http' %}target="_blank" rel="noreferrer"{% endif %}>
+                <span class="icon" aria-hidden="true">
+                  <img src="{{ link.icon | relative_url }}" alt="">
+                </span>
+                <span>{{ link.label }}</span>
+              </a>
+            {% endfor %}
           </div>
         </div>
       </aside>

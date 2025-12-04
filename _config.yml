@@ -2,3 +2,9 @@ title: Vyrnexis
 author: Vyrnexis
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
+
+# Brand and sidebar copy (easy to change for forks)
+brand_name: Vyrnexis
+brand_subtitle: "Code, cats, and questionable commits"
+sidebar_handle: "@Vyrnexis"
+sidebar_subtext: "Signals from the dark stack"
