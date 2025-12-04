@@ -6,6 +6,7 @@
   <title>{{ page.title | default: "Vyrnexis — Personal Tech Blog" }}</title>
   <meta name="description" content="Vyrnexis — dark tech blog and personal site" />
   <meta name="author" content="Vyrnexis" />
+
   <style>
     :root{
       --bg:#050506;
@@ -18,48 +19,214 @@
       --card-shadow: 0 6px 18px rgba(0,0,0,0.6);
       --mono: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
+
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#040405);color:var(--text);font-family:var(--mono)}
-    .wrap{max-width:980px;margin:36px auto;padding:28px}
-    header{display:flex;align-items:center;gap:18px}
-    .logo-slab{width:76px;height:76px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:var(--card-shadow);overflow:hidden}
-    .logo-slab img{width:64px;height:64px;display:block}
-    .brand{display:flex;flex-direction:column}
-    .brand h1{margin:0;font-size:20px;letter-spacing:4px}
-    .brand p{margin:4px 0 0;font-size:12px;color:var(--muted)}
-    nav{margin-left:auto;display:flex;gap:10px;align-items:center}
-    .btn{border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:8px;background:transparent;color:var(--muted);font-size:13px;cursor:pointer}
-    .btn.primary{background:linear-gradient(90deg,rgba(0,230,255,0.08),rgba(138,92,255,0.06));border:1px solid rgba(0,230,255,0.12);color:var(--text)}
-    main{display:grid;grid-template-columns:1fr 320px;gap:22px;margin-top:28px}
-    .post{background:linear-gradient(180deg,var(--panel),#0a0a0b);padding:18px;border-radius:12px;box-shadow:var(--card-shadow);border:1px solid rgba(255,255,255,0.02);margin-bottom:18px}
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#040405);
+      color:var(--text);
+      font-family:var(--mono);
+      scroll-behavior:smooth; /* smooth anchor scroll */
+    }
+
+    .wrap{
+      max-width:980px;
+      margin:36px auto;
+      padding:28px;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    .logo-slab{
+      width:76px;
+      height:76px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:var(--card-shadow);
+      overflow:hidden;
+    }
+
+    .logo-slab img{
+      width:64px;
+      height:64px;
+      display:block;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .brand h1{
+      margin:0;
+      font-size:20px;
+      letter-spacing:4px;
+    }
+
+    .brand p{
+      margin:4px 0 0;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    nav{
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn{
+      border:1px solid rgba(255,255,255,0.04);
+      padding:8px 12px;
+      border-radius:8px;
+      background:transparent;
+      color:var(--muted);
+      font-size:13px;
+      cursor:pointer;
+      text-decoration:none;      /* so <a> looks like button */
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .btn.primary{
+      background:linear-gradient(90deg,rgba(0,230,255,0.08),rgba(138,92,255,0.06));
+      border:1px solid rgba(0,230,255,0.12);
+      color:var(--text);
+    }
+
+    main{
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:22px;
+      margin-top:28px;
+    }
+
+    .post{
+      background:linear-gradient(180deg,var(--panel),#0a0a0b);
+      padding:18px;
+      border-radius:12px;
+      box-shadow:var(--card-shadow);
+      border:1px solid rgba(255,255,255,0.02);
+      margin-bottom:18px;
+    }
+
     .post h2{margin:0 0 8px}
     .post h1{margin:0 0 8px}
-    .meta{color:var(--muted);font-size:13px;margin-bottom:12px}
-    .excerpt{color:var(--text);line-height:1.5}
-    .post-content{color:var(--text);line-height:1.6;font-size:15px}
-    .post-content h2, .post-content h3{margin-top:18px}
-    .readmore{display:inline-block;margin-top:14px;padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--accent);text-decoration:none}
-    aside{position:relative}
-    .card{background:var(--panel);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);box-shadow:var(--card-shadow)}
-    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-size:13px;margin:4px 6px 4px 0}
-    footer{margin-top:36px;color:var(--muted);font-size:13px;text-align:center}
-    .avatar{width:96px;height:96px;border-radius:999px;background:linear-gradient(135deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;margin:0 auto 12px;position:relative;overflow:hidden}
-    .avatar img{width:84px;height:84px;display:block}
-    .accent-line{height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:2px;margin:10px 0 18px}
-    @media(max-width:920px){
-      main{grid-template-columns:1fr}
-      .wrap{padding:18px}
-      nav{display:none}
+
+    .meta{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:12px;
     }
+
+    .excerpt{
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    .post-content{
+      color:var(--text);
+      line-height:1.6;
+      font-size:15px;
+    }
+
+    .post-content h2,
+    .post-content h3{
+      margin-top:18px;
+    }
+
+    .readmore{
+      display:inline-block;
+      margin-top:14px;
+      padding:8px 12px;
+      border-radius:8px;
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.03);
+      color:var(--accent);
+      text-decoration:none;
+    }
+
+    aside{position:relative}
+
+    .card{
+      background:var(--panel);
+      padding:16px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.02);
+      box-shadow:var(--card-shadow);
+    }
+
+    .tag{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.3);
+      border:1px solid rgba(255,255,255,0.02);
+      color:var(--muted);
+      font-size:13px;
+      margin:4px 6px 4px 0;
+    }
+
+    footer{
+      margin-top:36px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+
+    .avatar{
+      width:96px;
+      height:96px;
+      border-radius:999px;
+      background:linear-gradient(135deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 12px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .avatar img{
+      width:84px;
+      height:84px;
+      display:block;
+    }
+
+    .accent-line{
+      height:2px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      border-radius:2px;
+      margin:10px 0 18px;
+    }
+
     pre, code{
       font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 13px;
     }
+
     pre{
       background: rgba(255,255,255,0.02);
       padding: 10px;
       border-radius: 8px;
       overflow-x: auto;
+    }
+
+    @media(max-width:920px){
+      main{grid-template-columns:1fr}
+      .wrap{padding:18px}
+      nav{display:none}
     }
   </style>
 </head>
@@ -69,25 +236,30 @@
       <div class="logo-slab" aria-hidden="true">
         <img src="{{ '/assets/logo-vyrnexis.svg' | relative_url }}" alt="Vyrnexis logo">
       </div>
+
       <div class="brand">
         <h1>VYRNEXIS</h1>
         <p>Dark tech — thoughts, code, and experiments</p>
       </div>
+
       <nav>
-        <button class="btn" onclick="scrollToSection('about')">About</button>
-        <button class="btn" onclick="scrollToSection('posts')">Posts</button>
-        <button class="btn primary" onclick="toggleAccent()">Toggle Accent</button>
+        <!-- These now always work: they jump to #about and #posts -->
+        <a class="btn" href="#about">About</a>
+        <a class="btn" href="#posts">Posts</a>
+        <button class="btn primary" type="button" onclick="toggleAccent()">Toggle Accent</button>
       </nav>
     </header>
 
     <div class="accent-line"></div>
 
     <main>
+      <!-- POSTS section: exists on all pages, so #posts anchor is valid -->
       <section id="posts">
         {{ content }}
       </section>
 
       <aside>
+        <!-- ABOUT section: exists on all pages, so #about anchor is valid -->
         <div class="card" style="text-align:center;padding-bottom:18px" id="about">
           <div class="avatar" title="Vyrnexis avatar">
             <img src="{{ '/assets/avatar-vyrnexis-400.svg' | relative_url }}" alt="Vyrnexis avatar">
@@ -114,10 +286,6 @@
   </div>
 
   <script>
-    function scrollToSection(id){
-      const el = document.getElementById(id);
-      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-    }
     function toggleAccent(){
       const r = getComputedStyle(document.documentElement);
       const cur = r.getPropertyValue('--accent').trim();
