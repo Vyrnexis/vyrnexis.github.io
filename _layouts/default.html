@@ -10,44 +10,49 @@
   <style>
     :root{
       --bg:#050506;
-      --panel:#0b0b0c;
+      --panel:#0c0c0e;
       --muted:#8a8c90;
       --text:#dfe6ee;
       --accent:#00e6ff;
       --accent-2:#8a5cff;
-      --glass: rgba(255,255,255,0.03);
-      --card-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      --glass: rgba(255,255,255,0.04);
+      --card-shadow: 0 10px 30px rgba(0,0,0,0.55);
+      --border: 1px solid rgba(255,255,255,0.04);
       --mono: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
-    *{box-sizing:border-box}
+    *{box-sizing:border-box;}
 
-    html,body{
-      height:100%;
+    body{
+      min-height:100vh;
       margin:0;
-      background:linear-gradient(180deg,var(--bg),#040405);
+      background:radial-gradient(circle at 20% 20%, rgba(0,230,255,0.05), transparent 35%),
+                 radial-gradient(circle at 80% 0%, rgba(138,92,255,0.05), transparent 30%),
+                 linear-gradient(180deg,var(--bg),#040405);
       color:var(--text);
       font-family:var(--mono);
-      scroll-behavior:smooth; /* smooth anchor scroll */
+      scroll-behavior:smooth;
     }
 
-    .wrap{
-      max-width:980px;
+    a{color:inherit;}
+
+    .page-shell{
+      max-width:1080px;
       margin:36px auto;
       padding:28px;
     }
 
-    header{
+    .site-header{
       display:flex;
       align-items:center;
       gap:18px;
     }
 
-    .logo-slab{
+    .logo-tile{
       width:76px;
       height:76px;
-      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
-      border-radius:12px;
+      border-radius:14px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));
       display:flex;
       align-items:center;
       justify-content:center;
@@ -55,7 +60,7 @@
       overflow:hidden;
     }
 
-    .logo-slab img{
+    .logo-tile img{
       width:64px;
       height:64px;
       display:block;
@@ -64,6 +69,7 @@
     .brand{
       display:flex;
       flex-direction:column;
+      gap:4px;
     }
 
     .brand h1{
@@ -73,12 +79,12 @@
     }
 
     .brand p{
-      margin:4px 0 0;
+      margin:0;
       font-size:12px;
       color:var(--muted);
     }
 
-    nav{
+    .nav{
       margin-left:auto;
       display:flex;
       gap:10px;
@@ -86,9 +92,9 @@
     }
 
     .btn{
-      border:1px solid rgba(255,255,255,0.04);
+      border:var(--border);
       padding:8px 12px;
-      border-radius:8px;
+      border-radius:10px;
       background:transparent;
       color:var(--muted);
       font-size:13px;
@@ -97,56 +103,54 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      transition:background 0.15s ease,border-color 0.15s ease,color 0.15s ease;
     }
 
-    .btn.primary{
-      background:linear-gradient(90deg,rgba(0,230,255,0.08),rgba(138,92,255,0.06));
-      border:1px solid rgba(0,230,255,0.12);
+    .btn:hover{
+      border-color:rgba(255,255,255,0.12);
       color:var(--text);
     }
 
-    .post-header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:10px;
+    .btn.primary{
+      background:linear-gradient(90deg,rgba(0,230,255,0.12),rgba(138,92,255,0.08));
+      border:1px solid rgba(0,230,255,0.2);
+      color:var(--text);
     }
 
-    .post-header .title-block{
-      flex:1 1 auto;
+    .divider{
+      height:2px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      border-radius:2px;
+      margin:16px 0 20px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 320px;
+      gap:22px;
+    }
+
+    .content{
       min-width:0;
     }
 
-    .back-link{
-      margin:0;
-      white-space:nowrap;
-    }
-
-    /* Keep header position consistent when navigating to anchors */
-    #posts, #about{
-      scroll-margin-top:32px;
-    }
-
-    main{
-      display:grid;
-      grid-template-columns:1fr 320px;
-      gap:22px;
-      margin-top:28px;
+    .anchor-target{
+      scroll-margin-top:48px;
     }
 
     .post{
-      background:linear-gradient(180deg,var(--panel),#0a0a0b);
+      background:linear-gradient(180deg,var(--panel),#0a0a0c);
       padding:18px;
-      border-radius:12px;
+      border-radius:14px;
+      border:var(--border);
       box-shadow:var(--card-shadow);
-      border:1px solid rgba(255,255,255,0.02);
       margin-bottom:18px;
     }
 
-    .post h2{margin:0 0 8px}
-    .post h1{margin:0 0 8px}
+    .post h1,
+    .post h2{
+      margin:0 0 8px;
+    }
 
     .meta{
       color:var(--muted);
@@ -156,7 +160,7 @@
 
     .excerpt{
       color:var(--text);
-      line-height:1.5;
+      line-height:1.55;
     }
 
     .post-content{
@@ -168,45 +172,54 @@
     .post-content h2,
     .post-content h3{
       margin-top:18px;
+      margin-bottom:6px;
+    }
+
+    .post-topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .title-block{
+      flex:1 1 auto;
+      min-width:0;
+    }
+
+    .back-link{
+      white-space:nowrap;
     }
 
     .readmore{
-      display:inline-block;
+      display:inline-flex;
       margin-top:14px;
       padding:8px 12px;
-      border-radius:8px;
+      border-radius:10px;
       background:transparent;
-      border:1px solid rgba(255,255,255,0.03);
+      border:var(--border);
       color:var(--accent);
       text-decoration:none;
+      font-weight:600;
     }
 
-    aside{position:relative}
+    aside{
+      position:relative;
+    }
 
     .card{
       background:var(--panel);
       padding:16px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.02);
+      border-radius:14px;
+      border:var(--border);
       box-shadow:var(--card-shadow);
+      margin-bottom:14px;
     }
 
-    .tag{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(0,0,0,0.3);
-      border:1px solid rgba(255,255,255,0.02);
-      color:var(--muted);
-      font-size:13px;
-      margin:4px 6px 4px 0;
-    }
-
-    footer{
-      margin-top:36px;
-      color:var(--muted);
-      font-size:13px;
-      text-align:center;
+    .card h4{
+      margin:0 0 8px;
     }
 
     .avatar{
@@ -228,36 +241,48 @@
       display:block;
     }
 
-    .accent-line{
-      height:2px;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      border-radius:2px;
-      margin:10px 0 18px;
+    .tag{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,0.25);
+      border:var(--border);
+      color:var(--muted);
+      font-size:13px;
+      margin:4px 6px 4px 0;
+    }
+
+    footer{
+      margin-top:36px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
     }
 
     pre, code{
       font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 13px;
+      font-size:13px;
     }
 
     pre{
-      background: rgba(255,255,255,0.02);
-      padding: 10px;
-      border-radius: 8px;
-      overflow-x: auto;
+      background:rgba(255,255,255,0.04);
+      padding:12px;
+      border-radius:12px;
+      overflow-x:auto;
+      border:var(--border);
     }
 
-    @media(max-width:920px){
-      main{grid-template-columns:1fr}
-      .wrap{padding:18px}
-      nav{display:none}
+    @media(max-width:960px){
+      .page-shell{padding:20px;}
+      .layout{grid-template-columns:1fr;}
+      .nav{display:none;}
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo-slab" aria-hidden="true">
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="logo-tile" aria-hidden="true">
         <img src="{{ '/assets/logo-vyrnexis.svg' | relative_url }}" alt="Vyrnexis logo">
       </div>
 
@@ -266,26 +291,20 @@
         <p>Dark tech — thoughts, code, and experiments</p>
       </div>
 
-      <nav>
-        <!-- About section exists on every page in the sidebar -->
+      <nav class="nav" aria-label="Primary">
         <a class="btn" href="#about">About</a>
-
-        <!-- Posts always goes back to the homepage list (top) -->
-        <a class="btn" href="{{ '/' | relative_url }}">Posts</a>
-
+        <a class="btn" href="{{ '/' | relative_url }}#posts">Posts</a>
         <button class="btn primary" type="button" onclick="toggleAccent()">Toggle Accent</button>
       </nav>
     </header>
 
-    <div class="accent-line"></div>
+    <div class="divider"></div>
 
-    <main>
-      <!-- POSTS section -->
-      <section id="posts">
+    <main class="layout">
+      <section id="posts" class="content anchor-target" aria-label="Posts">
         {% if page.collection == "posts" %}
-          <!-- Single post view -->
           <article class="post">
-            <div class="post-header">
+            <div class="post-topbar">
               <div class="title-block">
                 <h1>{{ page.title }}</h1>
                 <div class="meta">
@@ -293,8 +312,7 @@
                   {% if page.author %} • by {{ page.author }}{% endif %}
                 </div>
               </div>
-
-              <a class="btn back-link" href="{{ '/' | relative_url }}">← Back to posts</a>
+              <a class="btn back-link" href="{{ '/' | relative_url }}#posts">← Back to posts</a>
             </div>
 
             <div class="post-content">
@@ -302,23 +320,21 @@
             </div>
           </article>
         {% else %}
-          <!-- Homepage (index.html) or other pages: render content directly -->
           {{ content }}
         {% endif %}
       </section>
 
-      <aside>
-        <!-- ABOUT section -->
-        <div class="card" style="text-align:center;padding-bottom:18px" id="about">
+      <aside class="sidebar">
+        <div class="card anchor-target" id="about">
           <div class="avatar" title="Vyrnexis avatar">
             <img src="{{ '/assets/avatar-vyrnexis-400.svg' | relative_url }}" alt="Vyrnexis avatar">
           </div>
-          <h3 style="margin:6px 0 0">@Vyrnexis</h3>
-          <p style="margin:6px 0;color:var(--muted);font-size:13px">Minimal. Dark. Tech.</p>
+          <h3 style="margin:6px 0 0;text-align:center">@Vyrnexis</h3>
+          <p style="margin:6px 0 0;text-align:center;color:var(--muted);font-size:13px">Minimal. Dark. Tech.</p>
         </div>
 
-        <div class="card" style="margin-top:14px">
-          <h4 style="margin:0 0 8px">Quick links</h4>
+        <div class="card">
+          <h4>Quick links</h4>
           <div style="display:flex;flex-wrap:wrap">
             <span class="tag">#tech</span>
             <span class="tag">#dev</span>
@@ -330,7 +346,7 @@
     </main>
 
     <footer>
-      <div style="opacity:0.9">Built for <strong>Vyrnexis</strong> • Dark Tech theme • MIT</div>
+      Built for <strong>Vyrnexis</strong> • Dark Tech theme • MIT
     </footer>
   </div>
 
@@ -340,13 +356,32 @@
         history.scrollRestoration = 'manual';
       }
 
+      const scrollToHash = function(hash){
+        if(!hash){ return; }
+        const target = document.querySelector(hash);
+        if(!target){ return; }
+        const top = target.getBoundingClientRect().top + window.scrollY - 20;
+        window.scrollTo({top: Math.max(0, top), behavior:'smooth'});
+      };
+
       window.addEventListener('load', function(){
-        if(!location.hash){
-          window.scrollTo(0, 0); // keep new page loads at the top
+        if(location.hash){
+          scrollToHash(location.hash);
         } else {
-          const target = document.querySelector(location.hash);
-          if(target){ target.scrollIntoView({block:'start'}); }
+          window.scrollTo(0, 0);
         }
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(function(link){
+        link.addEventListener('click', function(e){
+          const hash = this.getAttribute('href');
+          if(!hash || hash === '#'){ return; }
+          const target = document.querySelector(hash);
+          if(!target){ return; }
+          e.preventDefault();
+          scrollToHash(hash);
+          history.replaceState(null, '', hash);
+        });
       });
     })();
 
