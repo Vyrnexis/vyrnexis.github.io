@@ -1,0 +1,13 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vyrnexis avatar">
+  <defs>
+    <linearGradient id="a1" x1="0" x2="1">
+      <stop offset="0" stop-color="#00e6ff" />
+      <stop offset="1" stop-color="#8a5cff" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="400" height="400" rx="80" ry="80" fill="#050506"/>
+  <g fill="none" stroke="url(#a1)" stroke-width="24" stroke-linecap="square" transform="translate(80,90)">
+    <path d="M20 20 L120 120 L220 20" stroke-linejoin="miter" />
+    <path d="M20 120 L120 220 L220 120" stroke-linejoin="miter" />
+  </g>
+</svg>
