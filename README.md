@@ -23,6 +23,7 @@ vyrnexis.github.io/
     ├── icon-discord.svg
     ├── icon-portfolio.svg
     └── icon-mail.svg
+├── favicon.ico              # Generated from assets/vyrnexis.png
 ```
 
 ## Customization
