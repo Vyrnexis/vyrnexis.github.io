@@ -124,6 +124,11 @@
       white-space:nowrap;
     }
 
+    /* Keep header position consistent when navigating to anchors */
+    #posts, #about{
+      scroll-margin-top:32px;
+    }
+
     main{
       display:grid;
       grid-template-columns:1fr 320px;
@@ -265,8 +270,8 @@
         <!-- About section exists on every page in the sidebar -->
         <a class="btn" href="#about">About</a>
 
-        <!-- Posts always goes back to the homepage list -->
-        <a class="btn" href="{{ '/' | relative_url }}#posts">Posts</a>
+        <!-- Posts always goes back to the homepage list (top) -->
+        <a class="btn" href="{{ '/' | relative_url }}">Posts</a>
 
         <button class="btn primary" type="button" onclick="toggleAccent()">Toggle Accent</button>
       </nav>
@@ -289,7 +294,7 @@
                 </div>
               </div>
 
-              <a class="btn back-link" href="{{ '/' | relative_url }}#posts">← Back to posts</a>
+              <a class="btn back-link" href="{{ '/' | relative_url }}">← Back to posts</a>
             </div>
 
             <div class="post-content">
