@@ -37,7 +37,7 @@
       color:var(--text);
       font-family:var(--mono);
       scroll-behavior:smooth;
-      overflow-y:scroll; /* force scrollbar even on short pages */
+      overflow-y:auto;
     }
 
     a{color:inherit;}
@@ -218,6 +218,18 @@
       gap:6px;
       white-space:nowrap;
       margin-top:0;
+      background:rgba(0,230,255,0.08);
+      border:1px solid rgba(0,230,255,0.2);
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+      transition:transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+    }
+
+    .back-link:hover{
+      transform:translateY(-1px);
+      background:rgba(0,230,255,0.12);
+      border-color:rgba(0,230,255,0.32);
     }
 
     aside{
