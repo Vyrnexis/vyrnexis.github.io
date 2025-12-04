@@ -255,6 +255,18 @@
       margin:0 0 8px;
     }
 
+    .about-card h3{
+      margin:6px 0 0;
+      text-align:center;
+    }
+
+    .about-card p{
+      margin:6px 0 0;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
     .avatar{
       width:96px;
       height:96px;
@@ -274,15 +286,42 @@
       display:block;
     }
 
-    .tag{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(0,0,0,0.25);
+    .link-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .icon-link{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:10px;
       border:var(--border);
-      color:var(--muted);
-      font-size:13px;
-      margin:4px 6px 4px 0;
+      text-decoration:none;
+      color:var(--text);
+      background:rgba(255,255,255,0.02);
+      transition:background 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
+    }
+
+    .icon-link:hover{
+      background:rgba(255,255,255,0.04);
+      border-color:rgba(255,255,255,0.12);
+      transform:translateY(-1px);
+    }
+
+    .icon{
+      width:18px;
+      height:18px;
+      display:inline-block;
+      flex-shrink:0;
+    }
+
+    .icon img{
+      width:18px;
+      height:18px;
+      display:block;
     }
 
     footer{
@@ -321,7 +360,7 @@
 
       <div class="brand">
         <h1>VYRNEXIS</h1>
-        <p>  thoughts, code, and experiments</p>
+        <p>Thoughts, code, and experiments</p>
       </div>
 
       <nav class="nav" aria-label="Primary">
@@ -358,21 +397,41 @@
       </section>
 
       <aside class="sidebar">
-        <div class="card anchor-target" id="about">
+        <div class="card anchor-target about-card" id="about">
           <div class="avatar" title="Vyrnexis avatar">
             <img src="{{ '/assets/avatar-vyrnexis-400.svg' | relative_url }}" alt="Vyrnexis avatar">
           </div>
-          <h3 style="margin:6px 0 0;text-align:center">@Vyrnexis</h3>
-          <p style="margin:6px 0 0;text-align:center;color:var(--muted);font-size:13px">Minimal. Dark. Tech.</p>
+          <h3>@Vyrnexis</h3>
+          <p>Minimal. Dark. Tech.</p>
         </div>
 
         <div class="card">
           <h4>Quick links</h4>
-          <div style="display:flex;flex-wrap:wrap">
-            <span class="tag">#tech</span>
-            <span class="tag">#dev</span>
-            <span class="tag">#ux</span>
-            <span class="tag">#notes</span>
+          <div class="link-list">
+            <a class="icon-link" href="https://github.com/Vyrnexis" target="_blank" rel="noreferrer">
+              <span class="icon" aria-hidden="true">
+                <img src="{{ '/assets/icon-github.svg' | relative_url }}" alt="">
+              </span>
+              <span>GitHub</span>
+            </a>
+            <a class="icon-link" href="https://www.youtube.com/@Vyrnexis" target="_blank" rel="noreferrer">
+              <span class="icon" aria-hidden="true">
+                <img src="{{ '/assets/icon-youtube.svg' | relative_url }}" alt="">
+              </span>
+              <span>YouTube</span>
+            </a>
+            <a class="icon-link" href="https://vyrnexis.dev" target="_blank" rel="noreferrer">
+              <span class="icon" aria-hidden="true">
+                <img src="{{ '/assets/icon-portfolio.svg' | relative_url }}" alt="">
+              </span>
+              <span>Portfolio</span>
+            </a>
+            <a class="icon-link" href="mailto:hello@vyrnexis.dev">
+              <span class="icon" aria-hidden="true">
+                <img src="{{ '/assets/icon-mail.svg' | relative_url }}" alt="">
+              </span>
+              <span>Email</span>
+            </a>
           </div>
         </div>
       </aside>
