@@ -8,3 +8,6 @@ brand_name: Vyrnexis
 brand_subtitle: "Code, cats, and questionable commits"
 sidebar_handle: "@Vyrnexis"
 sidebar_subtext: "Signals from the dark stack"
+
+# Show posts dated in the future (helpful for scheduled-looking posts)
+future: true
