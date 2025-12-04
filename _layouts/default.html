@@ -378,6 +378,28 @@
   </div>
 
   <script>
+    // Accent theme persistence
+    const ACCENT_KEY = 'vyrnexis-accent';
+    const ACCENT_DEFAULT = {accent:'#00e6ff', accent2:'#8a5cff'};
+    const ACCENT_PURPLE = {accent:'#8a5cff', accent2:'#ff4aa3'};
+    let accentMode = null;
+
+    function applyAccent(mode){
+      const palette = mode === 'purple' ? ACCENT_PURPLE : ACCENT_DEFAULT;
+      document.documentElement.style.setProperty('--accent', palette.accent);
+      document.documentElement.style.setProperty('--accent-2', palette.accent2);
+      accentMode = mode === 'purple' ? 'purple' : 'default';
+    }
+
+    (function restoreAccent(){
+      try{
+        const stored = localStorage.getItem(ACCENT_KEY);
+        applyAccent(stored === 'purple' ? 'purple' : 'default');
+      } catch(e){
+        applyAccent('default');
+      }
+    })();
+
     (function(){
       if('scrollRestoration' in history){
         history.scrollRestoration = 'manual';
@@ -413,15 +435,9 @@
     })();
 
     function toggleAccent(){
-      const r = getComputedStyle(document.documentElement);
-      const cur = r.getPropertyValue('--accent').trim();
-      if(cur === '#00e6ff'){
-        document.documentElement.style.setProperty('--accent','#8a5cff');
-        document.documentElement.style.setProperty('--accent-2','#ff4aa3');
-      } else {
-        document.documentElement.style.setProperty('--accent','#00e6ff');
-        document.documentElement.style.setProperty('--accent-2','#8a5cff');
-      }
+      const next = accentMode === 'purple' ? 'default' : 'purple';
+      applyAccent(next);
+      try{ localStorage.setItem(ACCENT_KEY, next); }catch(e){}
     }
   </script>
 </body>
