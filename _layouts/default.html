@@ -335,6 +335,21 @@
   </div>
 
   <script>
+    (function(){
+      if('scrollRestoration' in history){
+        history.scrollRestoration = 'manual';
+      }
+
+      window.addEventListener('load', function(){
+        if(!location.hash){
+          window.scrollTo(0, 0); // keep new page loads at the top
+        } else {
+          const target = document.querySelector(location.hash);
+          if(target){ target.scrollIntoView({block:'start'}); }
+        }
+      });
+    })();
+
     function toggleAccent(){
       const r = getComputedStyle(document.documentElement);
       const cur = r.getPropertyValue('--accent').trim();
