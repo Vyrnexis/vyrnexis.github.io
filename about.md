@@ -5,24 +5,32 @@ title: About — Vyrnexis
 
 ## About Vyrnexis
 
-I’m Vyrnexis, a builder and writer who enjoys minimal, dark tech aesthetics. This site is where I share notes on development, design experiments, and the occasional deep dive into tools I love.
+I’m Vyrnexis—a Linux-first tinkerer who writes code for fun. This blog is my scratchpad for experiments, notes, and the occasional deep dive.
 
-## What You’ll Find
+## Journey
 
-- Build notes on web and systems projects
-- UI/UX experiments with dark, minimal styling
-- Short takes on productivity and developer tooling
-- Links to projects and prototypes
+- Started out hacking on VB6, slid into Delphi, touched C# and Python, and these days enjoy Nim for its speed and clarity.
+- Spent time reverse engineering and even built a DirectX overlay/menu for Combat Arms back in the day.
+- Still happiest when exploring how things work under the hood.
 
-## Current Focus
+## What I’m Into Now
 
-- Refining a cohesive dark theme across apps
-- Automating small workflows that save time every day
-- Exploring design systems that balance clarity and personality
+- Linux workflows, dotfiles, and lightweight setups.
+- Building small tools and prototypes.
+- Sharing tutorials and breakdowns—YouTube content on Linux and programming is on the roadmap.
 
-## Elsewhere
+## Projects You’ll See Here
+
+- NimLaunch — a launcher/utility suite in Nim.
+- Nymph — ongoing tooling experiments.
+- Desktop applets (e.g., Sensibo Monitor) for Cinnamon and Budgie.
+
+## Tech Stack Highlights
+
+- Nim, Python, bits of C#, and a soft spot for Delphi nostalgia.
+- Graphics/overlay tinkering and reverse engineering curiosities.
+
+## Connect
 
 - GitHub: `@vyrnexis`
 - Email: hello@vyrnexis.dev
-
-Thanks for stopping by. If you’re into minimal, purposeful design with a tech edge, you’re in the right place.
