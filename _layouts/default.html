@@ -105,8 +105,23 @@
       color:var(--text);
     }
 
-    .back-link{
+    .post-header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
       margin-bottom:10px;
+    }
+
+    .post-header .title-block{
+      flex:1 1 auto;
+      min-width:0;
+    }
+
+    .back-link{
+      margin:0;
+      white-space:nowrap;
     }
 
     main{
@@ -265,12 +280,16 @@
         {% if page.collection == "posts" %}
           <!-- Single post view -->
           <article class="post">
-            <a class="btn back-link" href="{{ '/' | relative_url }}#posts">← Back to posts</a>
+            <div class="post-header">
+              <div class="title-block">
+                <h1>{{ page.title }}</h1>
+                <div class="meta">
+                  {{ page.date | date: "%b %-d, %Y" }}
+                  {% if page.author %} • by {{ page.author }}{% endif %}
+                </div>
+              </div>
 
-            <h1>{{ page.title }}</h1>
-            <div class="meta">
-              {{ page.date | date: "%b %-d, %Y" }}
-              {% if page.author %} • by {{ page.author }}{% endif %}
+              <a class="btn back-link" href="{{ '/' | relative_url }}#posts">← Back to posts</a>
             </div>
 
             <div class="post-content">
