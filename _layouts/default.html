@@ -23,6 +23,10 @@
 
     *{box-sizing:border-box;}
 
+    html{
+      overflow-y:scroll; /* keep scrollbar space consistent across pages */
+    }
+
     body{
       min-height:100vh;
       margin:0;
@@ -189,10 +193,6 @@
       min-width:0;
     }
 
-    .back-link{
-      white-space:nowrap;
-    }
-
     .readmore{
       display:inline-flex;
       margin-top:14px;
@@ -203,6 +203,20 @@
       color:var(--accent);
       text-decoration:none;
       font-weight:600;
+    }
+
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      white-space:nowrap;
+      color:var(--accent);
+      border:var(--border);
+      padding:8px 12px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      background:transparent;
     }
 
     aside{
@@ -312,7 +326,7 @@
                   {% if page.author %} • by {{ page.author }}{% endif %}
                 </div>
               </div>
-              <a class="btn back-link" href="{{ '/' | relative_url }}#posts">← Back to posts</a>
+              <a class="readmore back-link" href="{{ '/' | relative_url }}#posts">← Back to posts</a>
             </div>
 
             <div class="post-content">
