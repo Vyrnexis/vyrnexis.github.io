@@ -28,7 +28,7 @@ vyrnexis.github.io/
 
 ## Customization
 
-- Brand/subtitle/sidebar text: edit `_config.yml` (`brand_name`, `brand_subtitle`, `sidebar_handle`, `sidebar_subtext`).
+- Brand/subtitle/sidebar text and site description: edit `_config.yml` (`brand_name`, `brand_subtitle`, `sidebar_handle`, `sidebar_subtext`, `description`).
 - Sidebar links/icons: edit `_data/links.yml` (label, url, icon path). Add more entries as needed.
 - Accent toggle: persists via localStorage; palettes are in `_layouts/default.html`.
 - Images in posts: use standard Markdown `![Alt]({{ '/assets/your-image.png' | relative_url }})` and they’ll auto-fit the column.

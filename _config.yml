@@ -2,6 +2,7 @@ title: Vyrnexis
 author: Vyrnexis
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
+description: "Minimal custom blog for notes, code, and experiments."
 
 # Brand and sidebar copy (easy to change for forks)
 brand_name: Vyrnexis
@@ -10,4 +11,4 @@ sidebar_handle: "@Vyrnexis"
 sidebar_subtext: "Signals from the dark stack"
 
 # Show posts dated in the future (helpful for scheduled-looking posts)
-future: true
+# future: true

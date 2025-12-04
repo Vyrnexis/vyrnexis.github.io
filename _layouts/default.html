@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{{ page.title | default: "Vyrnexis" }}</title>
-  <meta name="description" content="{{ site.title | default: 'Vyrnexis' }}" />
+  <title>{{ page.title | default: site.title | default: "Vyrnexis" }}</title>
+  <meta name="description" content="{{ site.description | default: site.title | default: 'Vyrnexis' }}" />
   <meta name="author" content="{{ site.author | default: 'Vyrnexis' }}" />
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="16x16 32x32" />
   <link rel="icon" href="{{ '/assets/logo-vyrnexis.svg' | relative_url }}" type="image/svg+xml" />
@@ -533,6 +533,7 @@
         history.scrollRestoration = 'manual';
       }
 
+      // Smooth anchor scroll without jumping to bottom on short pages
       const scrollToHash = function(hash){
         if(!hash){ return; }
         const target = document.querySelector(hash);
