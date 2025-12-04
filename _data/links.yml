@@ -4,9 +4,13 @@
 - label: YouTube
   url: https://www.youtube.com/@Vyrnexis
   icon: /assets/icon-youtube.svg
+- label: Discord
+  url: https://discord.com/users/vyrnexis
+  icon: /assets/icon-discord.svg
 - label: Portfolio
-  url: https://vyrnexis.dev
+  url: https://vyrnexis.com
   icon: /assets/icon-portfolio.svg
 - label: Email
-  url: mailto:hello@vyrnexis.dev
+  url: mailto:Vyrnexis@gmail.com
   icon: /assets/icon-mail.svg
+

@@ -20,6 +20,7 @@ vyrnexis.github.io/
     ├── avatar-vyrnexis-400.svg
     ├── icon-github.svg
     ├── icon-youtube.svg
+    ├── icon-discord.svg
     ├── icon-portfolio.svg
     └── icon-mail.svg
 ```
