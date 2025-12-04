@@ -1,0 +1,212 @@
+<!--
+VYRNEXIS - Minimal Dark Tech Blog (single-file)
+
+INSTRUCTIONS (short):
+1) Create a GitHub repository named: vyrnexis.github.io
+2) git init; git add index.html; git commit -m "Initial Vyrnexis site"
+3) git branch -M main
+4) git remote add origin https://github.com/<your-username>/vyrnexis.github.io.git
+5) git push -u origin main
+
+This single-file site (index.html) contains inline CSS, an SVG logo, and a simple JS switch for theme/accents.
+Drop this file at the repository root (index.html) to serve as your GitHub Pages user site at:
+https://<your-username>.github.io/
+
+Customization notes:
+- Replace the placeholder author and sample posts with your content.
+- To change accent color, edit the --accent variable in :root (CSS) or use the theme toggle.
+- Logo is an SVG above — you can swap / edit it inline.
+
+License: MIT (change if you prefer)
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vyrnexis — Personal Tech Blog</title>
+  <meta name="description" content="Vyrnexis — dark tech blog and personal site" />
+  <meta name="author" content="Vyrnexis" />
+
+  <style>
+    /* Minimal Dark Tech CSS (all inline for single-file deployment) */
+    :root{
+      --bg:#050506;
+      --panel:#0b0b0c;
+      --muted:#8a8c90;
+      --text:#dfe6ee;
+      --accent:#00e6ff; /* cyan neon accent */
+      --accent-2:#8a5cff;
+      --glass: rgba(255,255,255,0.03);
+      --card-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      --mono: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#040405);color:var(--text);font-family:var(--mono)}
+
+    .wrap{max-width:980px;margin:36px auto;padding:28px}
+    header{display:flex;align-items:center;gap:18px}
+    /* SVG logo box */
+    .logo-slab{width:76px;height:76px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:var(--card-shadow)}
+    .brand{display:flex;flex-direction:column}
+    .brand h1{margin:0;font-size:20px;letter-spacing:4px}
+    .brand p{margin:4px 0 0;font-size:12px;color:var(--muted)}
+
+    nav{margin-left:auto;display:flex;gap:10px;align-items:center}
+    .btn{border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:8px;background:transparent;color:var(--muted);font-size:13px;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,rgba(0,230,255,0.08),rgba(138,92,255,0.06));border:1px solid rgba(0,230,255,0.12);color:var(--text)}
+
+    main{display:grid;grid-template-columns:1fr 320px;gap:22px;margin-top:28px}
+
+    /* posts */
+    .post{background:linear-gradient(180deg,var(--panel),#0a0a0b);padding:18px;border-radius:12px;box-shadow:var(--card-shadow);border:1px solid rgba(255,255,255,0.02)}
+    .post h2{margin:0 0 8px}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:12px}
+    .excerpt{color:var(--text);line-height:1.5}
+    .readmore{display:inline-block;margin-top:14px;padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--accent);text-decoration:none}
+
+    /* sidebar */
+    aside{position:relative}
+    .card{background:var(--panel);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);box-shadow:var(--card-shadow)}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-size:13px;margin:4px 6px 4px 0}
+
+    footer{margin-top:36px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* avatar circle for socials */
+    .avatar{width:96px;height:96px;border-radius:999px;background:linear-gradient(135deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;margin:0 auto 12px;position:relative}
+    .avatar svg{width:64px;height:64px;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.6))}
+
+    /* neon accent underline */
+    .accent-line{height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:2px;margin:10px 0 18px}
+
+    /* responsive */
+    @media(max-width:920px){
+      main{grid-template-columns:1fr}
+      .wrap{padding:18px}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo-slab" aria-hidden="true">
+        <!-- Inline SVG logo: two inverted chevrons forming a stylised V -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vyrnexis logo">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#00e6ff" stop-opacity="0.95" />
+              <stop offset="1" stop-color="#8a5cff" stop-opacity="0.9" />
+            </linearGradient>
+          </defs>
+          <g fill="none" stroke="url(#g1)" stroke-width="6" stroke-linecap="square" transform="translate(10,12)">
+            <path d="M10 10 L40 40 L70 10" stroke-linejoin="miter" />
+            <path d="M10 40 L40 70 L70 40" stroke-linejoin="miter" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="brand">
+        <h1>VYRNEXIS</h1>
+        <p>Dark tech — thoughts, code, and experiments</p>
+      </div>
+
+      <nav>
+        <button class="btn" onclick="scrollToSection('about')">About</button>
+        <button class="btn" onclick="scrollToSection('posts')">Posts</button>
+        <button class="btn primary" onclick="toggleAccent()">Toggle Accent</button>
+      </nav>
+    </header>
+
+    <div class="accent-line"></div>
+
+    <main>
+      <section id="posts">
+        <article class="post">
+          <h2>Welcome to Vyrnexis</h2>
+          <div class="meta">Dec 4, 2025 • by Vyrnexis</div>
+          <p class="excerpt">This is the first post on the new personal blog for Vyrnexis. Expect short technical notes, project writeups, and experimental UI/UX ideas. The site is intentionally minimal and optimized for clarity.</p>
+          <a class="readmore" href="#">Read more →</a>
+        </article>
+
+        <article class="post" style="margin-top:18px">
+          <h2>Getting started with GitHub Pages</h2>
+          <div class="meta">Dec 4, 2025 • by Vyrnexis</div>
+          <p class="excerpt">Quick guide to deploy this single-file site to GitHub Pages: create repository <code>vyrnexis.github.io</code>, push this index.html to the main branch, then visit https://&lt;your-username&gt;.github.io</p>
+          <a class="readmore" href="#">Read more →</a>
+        </article>
+      </section>
+
+      <aside>
+        <div class="card" style="text-align:center;padding-bottom:18px">
+          <div class="avatar" title="Vyrnexis avatar">
+            <!-- Social avatar: simplified glyph of the logo for use as a circular avatar -->
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vyrnexis avatar">
+              <defs>
+                <linearGradient id="a1" x1="0" x2="1">
+                  <stop offset="0" stop-color="#00e6ff" />
+                  <stop offset="1" stop-color="#8a5cff" />
+                </linearGradient>
+              </defs>
+              <g fill="none" stroke="url(#a1)" stroke-width="7" stroke-linecap="square" transform="translate(14,14)">
+                <path d="M8 8 L34 34 L60 8" stroke-linejoin="miter" />
+                <path d="M8 34 L34 60 L60 34" stroke-linejoin="miter" />
+              </g>
+            </svg>
+          </div>
+          <h3 style="margin:6px 0 0">@Vyrnexis</h3>
+          <p style="margin:6px 0;color:var(--muted);font-size:13px">Minimal. Dark. Tech.</p>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h4 style="margin:0 0 8px">Quick links</h4>
+          <div style="display:flex;flex-wrap:wrap">
+            <span class="tag">#tech</span>
+            <span class="tag">#dev</span>
+            <span class="tag">#ux</span>
+            <span class="tag">#notes</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h4 style="margin:0 0 8px">Deploy</h4>
+          <p style="color:var(--muted);font-size:13px;margin:0 0 8px">Create a repository called <code>vyrnexis.github.io</code> and push this file as <code>index.html</code> to the root of the main branch.</p>
+          <pre style="background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;color:var(--muted);font-size:13px;overflow:auto">git init
+git add index.html
+git commit -m "Initial Vyrnexis site"
+git branch -M main
+git remote add origin https://github.com/&lt;your-username&gt;/vyrnexis.github.io.git
+git push -u origin main</pre>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div style="opacity:0.9">Built for <strong>Vyrnexis</strong> • Dark Tech theme • MIT</div>
+    </footer>
+
+  </div>
+
+  <script>
+    // small helpers
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    function toggleAccent(){
+      // quick accent cycle between two colors
+      const r = getComputedStyle(document.documentElement);
+      const cur = r.getPropertyValue('--accent').trim();
+      if(cur === '#00e6ff'){
+        document.documentElement.style.setProperty('--accent','#8a5cff');
+        document.documentElement.style.setProperty('--accent-2','#ff4aa3');
+      } else {
+        document.documentElement.style.setProperty('--accent','#00e6ff');
+        document.documentElement.style.setProperty('--accent-2','#8a5cff');
+      }
+    }
+  </script>
+</body>
+</html>
