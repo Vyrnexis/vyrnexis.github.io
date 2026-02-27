@@ -1,79 +1,87 @@
-# Vyrnexis — Dark Tech Blog (Jekyll)
+# Vyrnexis Blog (GitHub Pages)
 
-Minimal dark-themed Jekyll blog with accent toggle, responsive layout, and easy customization via `_config.yml` and `_data/links.yml`.
+Custom-coded blog built for GitHub Pages. It is Jekyll-compatible and uses GitHub's built-in Jekyll pipeline to render Markdown posts and layouts.
 
-## Structure
+## Project Layout
 
 ```text
 vyrnexis.github.io/
-├── index.html               # Home lists posts
-├── about.md                 # About page content
-├── _config.yml              # Site settings, brand text, sidebar text
+├── _config.yml
 ├── _data/
-│   └── links.yml            # Sidebar links + icons
+│   └── links.yml
 ├── _layouts/
-│   └── default.html         # Main layout, CSS, JS
-├── _posts/                  # Blog posts (Markdown)
-│   └── 2025-12-04-welcome-to-vyrnexis.md
-└── assets/                  # Logos, avatar, icons
-    ├── logo-vyrnexis.svg
-    ├── avatar-vyrnexis-400.svg
-    ├── icon-github.svg
-    ├── icon-youtube.svg
-    ├── icon-discord.svg
-    ├── icon-portfolio.svg
-    └── icon-mail.svg
-├── favicon.ico              # Generated from assets/vyrnexis.png
+│   └── default.html
+├── _posts/
+│   ├── 2025-12-04-welcome-to-vyrnexis.md
+│   └── 2025-12-04-rc4-nim.md
+├── assets/
+│   ├── avatar-vyrnexis-400.svg
+│   ├── icon-discord.svg
+│   ├── icon-github.svg
+│   ├── icon-mail.svg
+│   ├── icon-portfolio.svg
+│   ├── icon-youtube.svg
+│   ├── logo-vyrnexis.svg
+│   ├── vyrnexis.png
+│   └── vyrnexis_600px.png
+├── about.md
+├── favicon.ico
+├── index.html
+└── CNAME
 ```
 
-## Customization
+## Customize The Site
 
-- Brand/subtitle/sidebar text and site description: edit `_config.yml` (`brand_name`, `brand_subtitle`, `sidebar_handle`, `sidebar_subtext`, `description`).
-- Sidebar links/icons: edit `_data/links.yml` (label, url, icon path). Add more entries as needed.
-- Accent toggle: persists via localStorage; palettes are in `_layouts/default.html`.
-- Images in posts: use standard Markdown `![Alt]({{ '/assets/your-image.png' | relative_url }})` and they’ll auto-fit the column.
+- Edit `_config.yml` for site-level copy and metadata.
+- Edit `_data/links.yml` for sidebar links and icon files.
+- Edit `_layouts/default.html` for layout, styling, and client-side behavior.
+- Replace icons or logos in `assets/` as needed.
 
-## Adding Posts
+## Add A Post
 
-1. Create `_posts/YYYY-MM-DD-title.md`
+1. Create a file in `_posts/` named `YYYY-MM-DD-your-title.md`.
 2. Add front matter:
-   ```yaml
-   ---
-   layout: default
-   title: "My Post Title"
-   date: 2025-12-10
-   author: "Your Name"
-   ---
-   ```
-3. Write in Markdown. Example:
-   ```markdown
-   This is a post.
 
-   ![Alt text]({{ '/assets/example.png' | relative_url }})
+```yaml
+---
+layout: default
+title: "My Post Title"
+date: 2025-12-10 14:00:00 +0800
+author: "Your Name"
+---
+```
 
-   - bullet 1
-   - bullet 2
-   ```
-4. Commit and push; the home page lists it automatically.
+3. Write Markdown content. Example with an image and Nim code:
 
-## Running Locally (optional)
+````markdown
+![Screenshot]({{ '/assets/example.png' | relative_url }})
 
-You don’t need to install anything to deploy on GitHub Pages (it runs Jekyll for you). If you want to preview locally and have Jekyll installed:
+```nim
+echo "Hello from Nim"
+```
+````
+
+4. Commit and push. GitHub Pages rebuilds automatically.
+
+## Local Preview (Optional)
+
+If Jekyll is installed locally:
 
 ```bash
 jekyll serve
-# open http://localhost:4000
 ```
 
-## Deploy to GitHub Pages
+Then open `http://localhost:4000`.
 
-1. Create a repo named `<username>.github.io`.
-2. Push this project to `main`.
-3. GitHub Pages will build automatically using its built-in Jekyll.
-4. Visit `https://<username>.github.io/`.
+## Deploy On GitHub Pages
 
-## Notes
+1. Push this repo to GitHub.
+2. In repo settings, enable GitHub Pages from the main branch.
+3. If using a custom domain, set DNS and add/update `CNAME`.
+4. Wait for Pages build and certificate issuance, then enable HTTPS.
 
-- Scroll behavior: custom JS smooth-scrolls anchors and avoids jumpy back navigation.
-- Accent theme: toggles between teal/purple and remembers your choice.
-- Assets: SVG icons live in `assets/`; replace with your own if desired.
+## Implementation Notes
+
+- Accent toggle persists in `localStorage`.
+- Scroll restoration is handled to avoid jumpy navigation.
+- Rouge syntax highlighting is styled in `default.html`.

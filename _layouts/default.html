@@ -17,7 +17,6 @@
       --text:#dfe6ee;
       --accent:#00e6ff;
       --accent-2:#8a5cff;
-      --glass: rgba(255,255,255,0.04);
       --card-shadow: 0 10px 30px rgba(0,0,0,0.55);
       --border: 1px solid rgba(255,255,255,0.04);
       --mono: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -119,6 +118,13 @@
       color:var(--text);
     }
 
+    .btn:focus-visible,
+    .readmore:focus-visible,
+    .icon-link:focus-visible{
+      outline:2px solid var(--accent);
+      outline-offset:2px;
+    }
+
     .btn.primary{
       background:linear-gradient(90deg,rgba(0,230,255,0.12),rgba(138,92,255,0.08));
       border:1px solid rgba(0,230,255,0.2);
@@ -203,9 +209,11 @@
       min-width:0;
     }
 
-    .readmore{
+    .readmore,
+    .back-link{
       display:inline-flex;
-      margin-top:14px;
+      align-items:center;
+      gap:6px;
       padding:8px 12px;
       border-radius:10px;
       background:rgba(0,230,255,0.08);
@@ -216,28 +224,20 @@
       transition:transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
     }
 
-    .readmore:hover{
+    .readmore{
+      margin-top:14px;
+    }
+
+    .readmore:hover,
+    .back-link:hover{
       transform:translateY(-1px);
       background:rgba(0,230,255,0.12);
       border-color:rgba(0,230,255,0.32);
     }
 
     .back-link{
-      gap:6px;
       white-space:nowrap;
       margin-top:0;
-      background:rgba(0,230,255,0.08);
-      border:1px solid rgba(0,230,255,0.2);
-      color:var(--accent);
-      text-decoration:none;
-      font-weight:600;
-      transition:transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
-    }
-
-    .back-link:hover{
-      transform:translateY(-1px);
-      background:rgba(0,230,255,0.12);
-      border-color:rgba(0,230,255,0.32);
     }
 
     aside{
@@ -444,7 +444,7 @@
       <nav class="nav" aria-label="Primary">
         <a class="btn" href="{{ '/about/' | relative_url }}">About</a>
         <a class="btn" href="{{ '/' | relative_url }}#posts">Posts</a>
-        <button class="btn primary" type="button" onclick="toggleAccent()">Toggle Accent</button>
+        <button class="btn primary" type="button" id="accent-toggle" aria-label="Toggle accent theme">Toggle Accent</button>
       </nav>
     </header>
 
@@ -486,11 +486,10 @@
         <div class="card">
           <h4>Quick links</h4>
           <div class="link-list">
-            {% assign links = site.data.links %}
-            {% for link in links %}
-              <a class="icon-link" href="{{ link.url }}" {% if link.url contains 'http' %}target="_blank" rel="noreferrer"{% endif %}>
+            {% for link in site.data.links %}
+              <a class="icon-link" href="{{ link.url }}" {% if link.url contains '://' %}target="_blank" rel="noopener noreferrer"{% endif %}>
                 <span class="icon" aria-hidden="true">
-                  <img src="{{ link.icon | relative_url }}" alt="">
+                  <img src="{{ link.icon | relative_url }}" alt="" width="18" height="18" loading="lazy" decoding="async">
                 </span>
                 <span>{{ link.label }}</span>
               </a>
@@ -501,7 +500,7 @@
     </main>
 
     <footer>
-    <strong>Vyrnexis</strong> • MIT • 2025
+      <strong>{{ site.brand_name | default: site.title | default: "Vyrnexis" }}</strong> • MIT • {{ site.time | date: "%Y" }}
     </footer>
   </div>
 
@@ -563,10 +562,13 @@
       });
     })();
 
-    function toggleAccent(){
-      const next = accentMode === 'purple' ? 'default' : 'purple';
-      applyAccent(next);
-      try{ localStorage.setItem(ACCENT_KEY, next); }catch(e){}
+    const accentToggleButton = document.getElementById('accent-toggle');
+    if(accentToggleButton){
+      accentToggleButton.addEventListener('click', function(){
+        const next = accentMode === 'purple' ? 'default' : 'purple';
+        applyAccent(next);
+        try{ localStorage.setItem(ACCENT_KEY, next); }catch(e){}
+      });
     }
   </script>
 </body>
