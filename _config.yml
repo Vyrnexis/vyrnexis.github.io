@@ -8,7 +8,7 @@ description: "Minimal custom blog for notes, code, and experiments."
 brand_name: Vyrnexis
 brand_subtitle: "Code, cats, and questionable commits"
 sidebar_handle: "@Vyrnexis"
-sidebar_subtext: "Signals from the dark stack"
+sidebar_subtext: "Linux, Nim, and mildly supervised chaos"
 
 # Show posts dated in the future (helpful for scheduled-looking posts)
 # future: true

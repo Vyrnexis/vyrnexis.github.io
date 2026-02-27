@@ -3,34 +3,57 @@ layout: default
 title: About — Vyrnexis
 ---
 
-## About Vyrnexis
+## Who I Am
 
-I’m Vyrnexis—a Linux-first tinkerer who writes code for fun. This blog is my scratchpad for experiments, notes, and the occasional deep dive.
+I am Vyrnexis: Linux user, hobbyist coder, and repeat offender of "just one more refactor before bed."
 
-## Journey
+Most of what I build starts as a practical itch, then accidentally becomes a full project.
 
-- Started out hacking on VB6, slid into Delphi, touched C# and Python, and these days enjoy Nim for its speed and clarity.
-- Spent time reverse engineering and even built a DirectX overlay/menu for Combat Arms back in the day.
-- Still happiest when exploring how things work under the hood.
+## Origin Story (Condensed)
 
-## What I’m Into Now
+- Started with VB6.
+- Got deeper with Delphi.
+- Spent time in C# and Python.
+- Landed on Nim and stayed there for speed, clarity, and sane binaries.
 
-- Linux workflows, dotfiles, and lightweight setups.
-- Building small tools and prototypes.
-- Sharing tutorials and breakdowns—YouTube content on Linux and programming is on the roadmap.
+I also spent years reverse engineering, writing keygens, and built a Delphi DirectX9 menu hack for Combat Arms.
 
-## Projects You’ll See Here
+## What I Build
 
-- NimLaunch — a launcher/utility suite in Nim.
-- Nymph — ongoing tooling experiments.
-- Desktop applets (e.g., Sensibo Monitor) for Cinnamon and Budgie.
+- Linux-first utilities and scripts
+- Terminal tools and launchers
+- Cinnamon and Budgie desktop applets
+- Projects that automate repetitive setup pain
 
-## Tech Stack Highlights
+## Projects You Will See A Lot
 
-- Nim, Python, bits of C#, and a soft spot for Delphi nostalgia.
-- Graphics/overlay tinkering and reverse engineering curiosities.
+- **NimLaunch**: keyboard-first launcher workflows
+- **Nymph**: lightweight fetch utility in Nim
+- **Sensibo applets**: climate controls for Cinnamon/Budgie panels
+- **Niri-install**: scripted desktop bootstrap
+- **BytePatcher / Pasfetch**: lower-level utility experiments
 
-## Connect
+## About This Site
 
-- GitHub: `@vyrnexis`
-- Email: hello@vyrnexis.dev
+This site was hand-built from scratch and shaped for GitHub Pages compatibility.  
+It is not a downloaded blog template with a logo swap.
+
+## What To Expect Here
+
+- build logs
+- code snippets
+- project post-mortems
+- practical Linux notes
+- occasional humor when something breaks in a funny way
+
+## Current Focus
+
+- ship better Linux tools
+- document real workflows instead of theory
+- turn project work into useful YouTube content
+
+## Find Me
+
+- GitHub: [github.com/Vyrnexis](https://github.com/Vyrnexis)
+- YouTube: [youtube.com/@Vyrnexis](https://www.youtube.com/@Vyrnexis)
+- Discord: `@vyrnexis`
